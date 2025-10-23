@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject private var model = AnimeViewModel()
+
+    @StateObject private var model = AnimeViewModel(httpClient: HTTPClient())
 
     var body: some View {
-        
+
         NavigationView {
-        
+
             Group {
                 if model.isLoading && model.movies.isEmpty {
                     ProgressView("Loading movies…")
@@ -38,13 +39,13 @@ struct MainView: View {
                     }
                     .listStyle(.plain)
                     .refreshable {
-                        await model.load()
+                        await model.loadMovies()
                     }
                 }
             }
             .navigationTitle("Anime Movies")
         }
-        .task { await model.load() }
+        .task { await model.loadMovies() }
     }
 }
 

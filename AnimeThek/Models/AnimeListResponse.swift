@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct AnimeListResponse: Decodable {
+struct AnimeListResponse: Codable {
     let data: [Anime]
 }

@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct Images: Decodable {
+struct Images: Codable {
     let jpg: Jpeg
 }
 
-struct Jpeg: Decodable {
+struct Jpeg: Codable {
 
     let imageURL: URL
     let smallImageURL: URL?
     let largeImageURL: URL?
-    
+
     enum CodingKeys: String, CodingKey {
         case imageURL = "image_url"
         case smallImageURL = "small_image_url"
