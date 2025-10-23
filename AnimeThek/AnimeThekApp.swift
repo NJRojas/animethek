@@ -11,7 +11,7 @@ import SwiftUI
 struct AnimeThekApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
