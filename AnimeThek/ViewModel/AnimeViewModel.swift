@@ -29,8 +29,7 @@ final class AnimeViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
         do {
-            let response = try await service.fetchMovies()
-            movies = response.data
+            movies = try await service.fetchMovies().data
         } catch {
             errorMessage = (error as? AnimeServiceError)
                 .map { "\($0)" } ?? error.localizedDescription
@@ -43,15 +42,24 @@ final class AnimeViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
 
-        guard let url = URL(string: Endpoint.animeMoviesList) else {
+        guard let url = Endpoint.anime.url else {
             errorMessage = NetworkError.badURL.localizedDescription
             return
         }
 
-        let resource = Resource(url: url, modelType: AnimeListResponse.self)
+        // you can also build string URL <baseURL>?<name>=<value>&<name>=<value>
+        // e.g "<baseURL>?type=movie&limit=25"
+
+        let resource =  Resource(
+            url: url,
+            method: .get([
+                URLQueryItem(name: "type", value: "movie"),
+                URLQueryItem(name: "limit", value: "25")
+            ]),
+            modelType: AnimeListResponse.self
+           )
         do {
-            let response = try await httpClient.load(resource)
-            movies = response.data
+            movies = try await httpClient.load(resource).data
         } catch {
             errorMessage = (error as? NetworkError)
                 .map { "\($0)" } ?? error.localizedDescription

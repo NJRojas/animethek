@@ -54,25 +54,40 @@ struct HTTPClient {
             }
         }
 
-        let (data, response) = try await session.data(for: request)
-
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw NetworkError.invalidResponse
-        }
-
-        // Check for specific HTTP errors
-        switch httpResponse.statusCode {
-            case 200...299:
-                break // Success
-            default:
-                let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: data)
-                throw NetworkError.errorResponse(errorResponse)
-        }
-
         do {
-            return try JSONDecoder().decode(resource.modelType, from: data)
+            let (data, response) = try await session.data(for: request)
+
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw NetworkError.invalidResponse
+            }
+
+            // Check for specific HTTP errors
+            switch httpResponse.statusCode {
+                case 200...299:
+                    break // Success
+                default:
+                // Try to decode a structured error if available
+                if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                    throw NetworkError.errorResponse(errorResponse)
+                } else {
+                    let snippet = String(data: data.prefix(1024), encoding: .utf8) ?? "<non-utf8>"
+                    throw NetworkError.errorResponse(ErrorResponse(message: "HTTP \(httpResponse.statusCode): \(snippet)"))
+                }
+            }
+
+            // Try to decode the actual model
+            do {
+                return try JSONDecoder().decode(resource.modelType, from: data)
+            } catch {
+                throw NetworkError.decodingError(error)
+            }
+
+        } catch let urlError as URLError {
+            // Surface connection issues separately
+            throw NetworkError.errorResponse(ErrorResponse(message: "Transport error: \(urlError.localizedDescription)"))
         } catch {
-            throw NetworkError.decodingError(error)
+            // Anything else
+            throw NetworkError.errorResponse(ErrorResponse(message: "Unexpected error: \(error.localizedDescription)"))
         }
     }
 
