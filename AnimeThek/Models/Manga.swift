@@ -24,3 +24,13 @@ struct Manga: Identifiable, Codable {
         case synopsis
     }
 }
+
+extension Manga: Equatable, Hashable {
+    static func == (lhs: Manga, rhs: Manga) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}

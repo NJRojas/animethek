@@ -35,4 +35,32 @@ enum Category: Hashable, Identifiable, CaseIterable {
                 MangaList()
         }
     }
+
+    var image: String {
+        switch self {
+            case .anime: "anime"
+            case .manga: "manga"
+        }
+    }
+
+    var title: String {
+        switch self {
+            case .anime: "Anime"
+            case .manga: "Manga"
+        }
+    }
+
+    var subtitle: String? {
+        switch self {
+            case .anime: "Anime"
+            case .manga: "Manga"
+        }
+    }
+
+    var tint: Color {
+        switch self {
+            case .anime: .blue
+            case .manga: .mint
+        }
+    }
 }

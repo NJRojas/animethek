@@ -12,38 +12,35 @@ struct AnimeMoviesList: View {
     @StateObject private var model = AnimeViewModel(httpClient: HTTPClient())
 
     var body: some View {
-
-        NavigationView {
-
-            Group {
-                if model.isLoading && model.movies.isEmpty {
-                    ProgressView("Loading movies…")
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else if let err = model.errorMessage, model.movies.isEmpty {
-                    VStack(spacing: 12) {
-                        Text("Couldn’t load movies")
-                            .font(.headline)
-                        Text(err).font(.callout).foregroundStyle(.secondary).multilineTextAlignment(.center)
-                        Button("Retry") { Task { await model.loadMovies() } }
-                            .buttonStyle(.borderedProminent)
-                    }
-                    .padding()
+        Group {
+            if model.isLoading && model.movies.isEmpty {
+                ProgressView("Loading movies…")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else {
-                    List(model.movies) { anime in
-                        NavigationLink {
-                            AnimeDetailView(anime: anime)
-                        } label: {
-                            AnimeRow(anime: anime)
-                        }
-                    }
-                    .listStyle(.plain)
-                    .refreshable {
-                        await model.loadMovies()
+            } else if let err = model.errorMessage, model.movies.isEmpty {
+                VStack(spacing: 12) {
+                    Text("Couldn’t load movies")
+                        .font(.headline)
+                    Text(err).font(.callout).foregroundStyle(.secondary).multilineTextAlignment(.center)
+                    Button("Retry") { Task { await model.loadMovies() } }
+                        .buttonStyle(.borderedProminent)
+                }
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                List(model.movies) { anime in
+                    NavigationLink(value: anime) {
+                        AnimeRow(anime: anime)
                     }
                 }
+                .listStyle(.plain)
+                .refreshable {
+                    await model.loadMovies()
+                }
             }
-            .navigationTitle("Anime Movies")
+        }
+        .navigationTitle("Anime Movies")
+        .navigationDestination(for: Anime.self) { anime in
+            AnimeDetailView(anime: anime)
         }
         .task { await model.loadMovies() }
     }

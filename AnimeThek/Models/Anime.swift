@@ -24,3 +24,13 @@ struct Anime: Identifiable, Codable {
         case synopsis
     }
 }
+
+extension Anime: Equatable, Hashable {
+    static func == (lhs: Anime, rhs: Anime) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}

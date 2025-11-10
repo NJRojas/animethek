@@ -9,19 +9,27 @@ import SwiftUI
 
 struct MainView: View {
 
-    var body: some View {
+    private let columns = [GridItem(.adaptive(minimum: 160), spacing: 16)]
 
-        NavigationStack {
-            List(Category.allCases, id: \.self) { category in
-                NavigationLink {
-                    category.destination
-                } label: {
-                    category.row
-                }
-            }
-            .navigationTitle("Anime Mediathek")
-        }
-    }
+       var body: some View {
+           NavigationStack {
+               ScrollView {
+                   LazyVGrid(columns: columns, spacing: 16) {
+                       ForEach(Category.allCases, id: \.self) { category in
+                           NavigationLink(value: category) {
+                               CategoryCard(category: category)
+                           }
+                           .buttonStyle(ScaledCardButtonStyle())
+                       }
+                   }
+                   .padding(16)
+               }
+               .navigationTitle("Anime Mediathek")
+               .navigationDestination(for: Category.self) { category in
+                   category.destination
+               }
+           }
+       }
 }
 
 #Preview {

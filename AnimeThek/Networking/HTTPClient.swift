@@ -11,7 +11,6 @@ import Foundation
 // one generic loader,
 // clear request modeling,
 // and testability via injectable session.
-
 struct HTTPClient {
 
     private let session: URLSession
