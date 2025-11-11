@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AnimeServiceError: LocalizedError {
+enum ServiceError: LocalizedError {
     case badURL
     case badStatus(Int, String)
     case decoding(String)
@@ -32,7 +32,7 @@ struct MovieService {
     private let base = "https://api.jikan.moe/v4/anime?type=movie&limit=25"
 
     func fetchMovies() async throws -> AnimeListResponse {
-        guard let url = URL(string: base) else { throw AnimeServiceError.badURL }
+        guard let url = URL(string: base) else { throw ServiceError.badURL }
 
         var request = URLRequest(url: url, timeoutInterval: 30)
         request.setValue("AnimeMoviesDemo/1.0 (iOS)", forHTTPHeaderField: "User-Agent")
@@ -46,17 +46,17 @@ struct MovieService {
 
             if !(200...299).contains(http.statusCode) {
                 let snippet = String(data: data.prefix(1024), encoding: .utf8) ?? "<non-utf8>"
-                throw AnimeServiceError.badStatus(http.statusCode, snippet)
+                throw ServiceError.badStatus(http.statusCode, snippet)
             }
 
             do {
                 return try JSONDecoder().decode(AnimeListResponse.self, from: data)
             } catch {
                 // Show a helpful decoding message (where it failed)
-                throw AnimeServiceError.decoding(String(describing: error))
+                throw ServiceError.decoding(String(describing: error))
             }
         } catch let urlErr as URLError {
-            throw AnimeServiceError.transport(urlErr)
+            throw ServiceError.transport(urlErr)
         } catch {
             throw error
         }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AnimeDetailView: View {
+
     let anime: Anime
 
     var body: some View {
@@ -45,7 +46,6 @@ struct AnimeDetailView: View {
                         }
                     }
                     .foregroundStyle(.secondary)
-
                     if let synopsis = anime.synopsis, !synopsis.isEmpty {
                         Text(synopsis)
                             .font(.body)
@@ -58,10 +58,12 @@ struct AnimeDetailView: View {
                 .padding(.horizontal)
             }
         }
-        .navigationTitle("Details")
+        .navigationTitle(anime.title)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 #Preview {
-    AnimeDetailView(anime: PreviewData.anime)
+    NavigationStack {
+        AnimeDetailView(anime: PreviewData.anime)
+    }
 }

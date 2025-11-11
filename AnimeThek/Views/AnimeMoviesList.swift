@@ -39,6 +39,7 @@ struct AnimeMoviesList: View {
             }
         }
         .navigationTitle("Anime Movies")
+        .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(for: Anime.self) { anime in
             AnimeDetailView(anime: anime)
         }

@@ -31,7 +31,7 @@ final class AnimeViewModel: ObservableObject {
         do {
             movies = try await service.fetchMovies().data
         } catch {
-            errorMessage = (error as? AnimeServiceError)
+            errorMessage = (error as? ServiceError)
                 .map { "\($0)" } ?? error.localizedDescription
         }
         isLoading = false

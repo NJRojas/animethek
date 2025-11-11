@@ -13,6 +13,7 @@ struct Anime: Identifiable, Codable {
     let images: Images
     let year: Int?
     let score: Double?
+    let rank: Int?
     let synopsis: String?
 
     enum CodingKeys: String, CodingKey {
@@ -21,6 +22,7 @@ struct Anime: Identifiable, Codable {
         case images
         case year
         case score
+        case rank
         case synopsis
     }
 }

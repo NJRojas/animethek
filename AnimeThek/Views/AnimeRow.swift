@@ -13,28 +13,12 @@ struct AnimeRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            AsyncImage(url: anime.images.jpg.imageURL) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView().frame(width: 64, height: 96)
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 64, height: 96)
-                        .clipped()
-                        .cornerRadius(6)
-                case .failure:
-                    Rectangle()
-                        .fill(.secondary.opacity(0.2))
-                        .overlay(Image(systemName: "photo").imageScale(.large))
-                        .frame(width: 64, height: 96)
-                        .cornerRadius(6)
-                @unknown default:
-                    EmptyView()
-                }
-            }
-
+            DownloadableImageView(
+                url: anime.images.jpg.imageURL,
+                width: 64,
+                height: 96,
+                cornerRadius: 6
+            )
             VStack(alignment: .leading, spacing: 4) {
                 Text(anime.title)
                     .font(.headline)

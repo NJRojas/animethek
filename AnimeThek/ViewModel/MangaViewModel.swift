@@ -10,7 +10,7 @@ import Foundation
 @MainActor
 final class MangaViewModel: ObservableObject {
 
-    @Published var movies: [Manga] = []
+    @Published var media: [Manga] = []
 
     @Published var isLoading = false
 
@@ -20,5 +20,28 @@ final class MangaViewModel: ObservableObject {
 
     init(httpClient: HTTPClient) {
         self.httpClient = httpClient
+    }
+    
+    func loadMedia() async {
+        guard !isLoading else { return }
+        isLoading = true
+        errorMessage = nil
+
+        guard let url = Endpoint.manga.url else {
+            errorMessage = NetworkError.badURL.localizedDescription
+            return
+        }
+        let resource =  Resource(
+            url: url,
+            method: .get([URLQueryItem(name: "limit", value: "25")]),
+            modelType: MangaListResponse.self
+           )
+        do {
+            media = try await httpClient.load(resource).data
+        } catch {
+            errorMessage = (error as? NetworkError)
+                .map { "\($0)" } ?? error.localizedDescription
+        }
+        isLoading = false
     }
 }

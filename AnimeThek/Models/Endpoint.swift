@@ -8,6 +8,7 @@
 import Foundation
 
 let baseURLString = "https://api.jikan.moe/v4"
+let docURL = "https://docs.api.jikan.moe/"
 
 enum Endpoint: String {
     case anime
