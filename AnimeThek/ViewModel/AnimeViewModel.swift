@@ -9,11 +9,11 @@ import Foundation
 
 @MainActor
 final class AnimeViewModel: ObservableObject {
-    
-    @Published var movies: [Anime] = []
-    
+
+    @Published var animeList: [Anime] = []
+
     @Published var isLoading = false
-    
+
     @Published var errorMessage: String?
 
     let httpClient: HTTPClient
@@ -22,7 +22,7 @@ final class AnimeViewModel: ObservableObject {
         self.httpClient = httpClient
     }
 
-    func loadMovies() async {
+    func fetchAnime() async {
         guard !isLoading else { return }
         isLoading = true
         errorMessage = nil
@@ -44,7 +44,7 @@ final class AnimeViewModel: ObservableObject {
             modelType: AnimeListResponse.self
            )
         do {
-            movies = try await httpClient.load(resource).data
+            animeList = try await httpClient.load(resource).data
         } catch {
             errorMessage = (error as? NetworkError)
                 .map { "\($0)" } ?? error.localizedDescription

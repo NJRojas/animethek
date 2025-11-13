@@ -14,29 +14,11 @@ struct AnimeDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                AsyncImage(url: anime.images.jpg.largeImageURL ?? anime.images.jpg.imageURL) { phase in
-                    switch phase {
-                    case .empty:
-                        ZStack { Rectangle().fill(.secondary.opacity(0.1)) ; ProgressView() }
-                            .frame(height: 280)
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(height: 280)
-                            .clipped()
-                    case .failure:
-                        Rectangle()
-                            .fill(.secondary.opacity(0.1))
-                            .overlay(Image(systemName: "photo").imageScale(.large))
-                            .frame(height: 280)
-                    @unknown default:
-                        EmptyView()
-                    }
-                }
-
+                DownloadableImageView(url: anime.images.url, type: .detail)
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(anime.title).font(.title2).bold()
+                    Text(anime.title)
+                        .font(.title2)
+                        .bold()
                     HStack(spacing: 12) {
                         if let year = anime.year {
                             Label("\(year)", systemImage: "calendar")

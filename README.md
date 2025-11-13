@@ -17,6 +17,8 @@ A list of sample implementations
 - Pull-to-refresh
 - Codable models matching the Jikan REST schema
 - Separation of concerns: Model ⇢ ViewModel ⇢ View
+- Text views looks like tags
+- Usage of AttributedStrings
 
 ## Architecture Overview
 

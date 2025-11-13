@@ -9,6 +9,10 @@ import Foundation
 
 struct Images: Codable {
     let jpg: Jpeg
+
+    var url: URL {
+        jpg.largeImageURL ?? jpg.imageURL
+    }
 }
 
 struct Jpeg: Codable {

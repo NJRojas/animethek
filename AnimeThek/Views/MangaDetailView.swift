@@ -14,28 +14,7 @@ struct MangaDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                AsyncImage(url: manga.images.jpg.largeImageURL ?? manga.images.jpg.imageURL) { phase in
-                    switch phase {
-                        case .empty:
-                            ZStack {
-                                Rectangle().fill(.secondary.opacity(0.1)) ; ProgressView()
-                            }
-                            .frame(height: 280)
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(height: 280)
-                                .clipped()
-                        case .failure:
-                            Rectangle()
-                                .fill(.secondary.opacity(0.1))
-                                .overlay(Image(systemName: "photo").imageScale(.large))
-                                .frame(height: 280)
-                        @unknown default:
-                            EmptyView()
-                    }
-                }
+                DownloadableImageView(url: manga.images.url, type: .detail)
                 VStack(alignment: .leading, spacing: 8) {
                     Text(manga.title)
                         .font(.title2)

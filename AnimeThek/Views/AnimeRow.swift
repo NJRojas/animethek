@@ -15,9 +15,7 @@ struct AnimeRow: View {
         HStack(spacing: 12) {
             DownloadableImageView(
                 url: anime.images.jpg.imageURL,
-                width: 64,
-                height: 96,
-                cornerRadius: 6
+                type: .thumbnail
             )
             VStack(alignment: .leading, spacing: 4) {
                 Text(anime.title)

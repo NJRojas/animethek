@@ -13,28 +13,28 @@ struct AnimeMoviesList: View {
 
     var body: some View {
         Group {
-            if model.isLoading && model.movies.isEmpty {
+            if model.isLoading && model.animeList.isEmpty {
                 ProgressView("Loading movies…")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-            } else if let err = model.errorMessage, model.movies.isEmpty {
+            } else if let err = model.errorMessage, model.animeList.isEmpty {
                 VStack(spacing: 12) {
                     Text("Couldn’t load movies")
                         .font(.headline)
                     Text(err).font(.callout).foregroundStyle(.secondary).multilineTextAlignment(.center)
-                    Button("Retry") { Task { await model.loadMovies() } }
+                    Button("Retry") { Task { await model.fetchAnime() } }
                         .buttonStyle(.borderedProminent)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
-                List(model.movies) { anime in
+                List(model.animeList) { anime in
                     NavigationLink(value: anime) {
                         AnimeRow(anime: anime)
                     }
                 }
                 .listStyle(.plain)
                 .refreshable {
-                    await model.loadMovies()
+                    await model.fetchAnime()
                 }
             }
         }
@@ -43,7 +43,7 @@ struct AnimeMoviesList: View {
         .navigationDestination(for: Anime.self) { anime in
             AnimeDetailView(anime: anime)
         }
-        .task { await model.loadMovies() }
+        .task { await model.fetchAnime() }
     }
 }
 
