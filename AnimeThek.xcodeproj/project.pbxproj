@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2083EF792EC5FF6A00E403F1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2083EF782EC5FF6A00E403F1 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		2083EF782EC5FF6A00E403F1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		20C0E33D2EA949C100041D38 /* AnimeThek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeThek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -32,6 +37,7 @@
 		20C0E3342EA949C100041D38 = {
 			isa = PBXGroup;
 			children = (
+				2083EF782EC5FF6A00E403F1 /* README.md */,
 				20C0E33F2EA949C100041D38 /* AnimeThek */,
 				20C0E33E2EA949C100041D38 /* Products */,
 			);
@@ -109,6 +115,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2083EF792EC5FF6A00E403F1 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
