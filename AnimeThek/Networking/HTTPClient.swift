@@ -26,7 +26,8 @@ struct HTTPClient {
 
     func load<T: Codable>(_ resource: Resource<T>) async throws -> T {
 
-        var request = URLRequest(url: resource.url)
+        var request = URLRequest(url: resource.url, timeoutInterval: 30)
+        request.cachePolicy = .reloadIgnoringLocalCacheData
 
         // Set HTTP method and body if needed
         switch resource.method {

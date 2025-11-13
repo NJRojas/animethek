@@ -22,21 +22,6 @@ final class AnimeViewModel: ObservableObject {
         self.httpClient = httpClient
     }
 
-    private let service = MovieService()
-
-    func load() async {
-        guard !isLoading else { return }
-        isLoading = true
-        errorMessage = nil
-        do {
-            movies = try await service.fetchMovies().data
-        } catch {
-            errorMessage = (error as? ServiceError)
-                .map { "\($0)" } ?? error.localizedDescription
-        }
-        isLoading = false
-    }
-
     func loadMovies() async {
         guard !isLoading else { return }
         isLoading = true
