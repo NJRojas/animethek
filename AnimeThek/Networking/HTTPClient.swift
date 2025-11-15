@@ -61,21 +61,16 @@ struct HTTPClient {
                 throw NetworkError.invalidResponse
             }
 
-            // Check for specific HTTP errors
-            switch httpResponse.statusCode {
-                case 200...299:
-                    break // Success
-                default:
-                // Try to decode a structured error if available
+            // MARK: - Handle non-success HTTP codes
+            guard (200...299).contains(httpResponse.statusCode) else {
                 if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
                     throw NetworkError.errorResponse(errorResponse)
-                } else {
-                    let snippet = String(data: data.prefix(1024), encoding: .utf8) ?? "<non-utf8>"
-                    throw NetworkError.errorResponse(ErrorResponse(message: "HTTP \(httpResponse.statusCode): \(snippet)"))
                 }
+                let snippet = String(data: data.prefix(1024), encoding: .utf8) ?? "<non-utf8>"
+                throw NetworkError.errorResponse(ErrorResponse(message: "HTTP \(httpResponse.statusCode): \(snippet)"))
             }
 
-            // Try to decode the actual model
+            // MARK: - Successful response: try decoding
             do {
                 return try JSONDecoder().decode(resource.modelType, from: data)
             } catch {
@@ -83,11 +78,15 @@ struct HTTPClient {
             }
 
         } catch let urlError as URLError {
-            // Surface connection issues separately
-            throw NetworkError.errorResponse(ErrorResponse(message: "Transport error: \(urlError.localizedDescription)"))
-        } catch {
-            // Anything else
-            throw NetworkError.errorResponse(ErrorResponse(message: "Unexpected error: \(error.localizedDescription)"))
+            // MARK: - Network transport errors
+            switch urlError.code {
+                case .notConnectedToInternet:
+                    throw NetworkError.errorResponse(ErrorResponse(message: "No internet connection"))
+                case .timedOut:
+                    throw NetworkError.errorResponse(ErrorResponse(message: "Request timed out"))
+                default:
+                    throw NetworkError.errorResponse(ErrorResponse(message: "Transport error: \(urlError.localizedDescription)"))
+            }
         }
     }
 
@@ -104,7 +103,12 @@ struct HTTPClient {
 }
 
 extension HTTPClient {
-    
+
+    // For Test purpose (dependency injection)
+    init(session: URLSession) {
+        self.session = session
+    }
+
     static var development: HTTPClient {
         HTTPClient()
     }

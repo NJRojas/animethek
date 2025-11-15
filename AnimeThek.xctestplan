@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "1D44C6BF-5629-4619-8531-65BDC8408717",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:AnimeThek.xcodeproj",
+      "identifier" : "20C0E33C2EA949C100041D38",
+      "name" : "AnimeThek"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:AnimeThek.xcodeproj",
+        "identifier" : "206A06FA2EC940C300F49AD2",
+        "name" : "AnimeThekTests"
+      }
+    }
+  ],
+  "version" : 1
+}

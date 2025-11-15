@@ -10,12 +10,29 @@
 		2083EF792EC5FF6A00E403F1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2083EF782EC5FF6A00E403F1 /* README.md */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		206A06FF2EC940C300F49AD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20C0E3352EA949C100041D38 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 20C0E33C2EA949C100041D38;
+			remoteInfo = AnimeThek;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		200DDF4F2ECB226A00E0F4C2 /* AnimeThek.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AnimeThek.xctestplan; sourceTree = "<group>"; };
+		206A06FB2EC940C300F49AD2 /* AnimeThekTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnimeThekTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2083EF782EC5FF6A00E403F1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		20C0E33D2EA949C100041D38 /* AnimeThek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeThek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		206A06FC2EC940C300F49AD2 /* AnimeThekTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AnimeThekTests;
+			sourceTree = "<group>";
+		};
 		20C0E33F2EA949C100041D38 /* AnimeThek */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AnimeThek;
@@ -24,6 +41,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		206A06F82EC940C300F49AD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		20C0E33A2EA949C100041D38 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -37,8 +61,10 @@
 		20C0E3342EA949C100041D38 = {
 			isa = PBXGroup;
 			children = (
+				200DDF4F2ECB226A00E0F4C2 /* AnimeThek.xctestplan */,
 				2083EF782EC5FF6A00E403F1 /* README.md */,
 				20C0E33F2EA949C100041D38 /* AnimeThek */,
+				206A06FC2EC940C300F49AD2 /* AnimeThekTests */,
 				20C0E33E2EA949C100041D38 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				20C0E33D2EA949C100041D38 /* AnimeThek.app */,
+				206A06FB2EC940C300F49AD2 /* AnimeThekTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,6 +81,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		206A06FA2EC940C300F49AD2 /* AnimeThekTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 206A07032EC940C300F49AD2 /* Build configuration list for PBXNativeTarget "AnimeThekTests" */;
+			buildPhases = (
+				206A06F72EC940C300F49AD2 /* Sources */,
+				206A06F82EC940C300F49AD2 /* Frameworks */,
+				206A06F92EC940C300F49AD2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				206A07002EC940C300F49AD2 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				206A06FC2EC940C300F49AD2 /* AnimeThekTests */,
+			);
+			name = AnimeThekTests;
+			packageProductDependencies = (
+			);
+			productName = AnimeThekTests;
+			productReference = 206A06FB2EC940C300F49AD2 /* AnimeThekTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		20C0E33C2EA949C100041D38 /* AnimeThek */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20C0E3482EA949C200041D38 /* Build configuration list for PBXNativeTarget "AnimeThek" */;
@@ -86,6 +136,10 @@
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					206A06FA2EC940C300F49AD2 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 20C0E33C2EA949C100041D38;
+					};
 					20C0E33C2EA949C100041D38 = {
 						CreatedOnToolsVersion = 16.4;
 					};
@@ -106,11 +160,19 @@
 			projectRoot = "";
 			targets = (
 				20C0E33C2EA949C100041D38 /* AnimeThek */,
+				206A06FA2EC940C300F49AD2 /* AnimeThekTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		206A06F92EC940C300F49AD2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		20C0E33B2EA949C100041D38 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -122,6 +184,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		206A06F72EC940C300F49AD2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		20C0E3392EA949C100041D38 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -131,7 +200,59 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		206A07002EC940C300F49AD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 20C0E33C2EA949C100041D38 /* AnimeThek */;
+			targetProxy = 206A06FF2EC940C300F49AD2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		206A07012EC940C300F49AD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FS3B82SXD2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.njintech.AnimeThekTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AnimeThek.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AnimeThek";
+			};
+			name = Debug;
+		};
+		206A07022EC940C300F49AD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FS3B82SXD2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.njintech.AnimeThekTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AnimeThek.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AnimeThek";
+			};
+			name = Release;
+		};
 		20C0E3462EA949C200041D38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -320,6 +441,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		206A07032EC940C300F49AD2 /* Build configuration list for PBXNativeTarget "AnimeThekTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				206A07012EC940C300F49AD2 /* Debug */,
+				206A07022EC940C300F49AD2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		20C0E3382EA949C100041D38 /* Build configuration list for PBXProject "AnimeThek" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
