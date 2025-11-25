@@ -39,6 +39,6 @@ struct AnimeRow: View {
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     AnimeRow(anime: PreviewData.anime)
 }

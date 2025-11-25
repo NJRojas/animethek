@@ -46,7 +46,8 @@ struct MangaDetailView: View {
     }
 }
 
-#Preview {
+// renders the view using only the minimum size needed to fit its content
+#Preview(traits: .sizeThatFitsLayout) {
     NavigationStack {
         MangaDetailView(manga: PreviewData.manga)
     }

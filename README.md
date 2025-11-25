@@ -124,6 +124,19 @@ AnimeThek includes reusable components such as:
 - Loading indicator
 - Designed for scalability and reusability across screens.
 
+## 🧩 SwiftUI Component Preview
+
+AnimeThek uses SwiftUI previews to render UI components in isolation, supporting fast iteration and design-system thinking.
+
+Here is an example preview for one of the reusable components:
+
+```swift
+#Preview(traits: .sizeThatFitsLayout) {
+    CategoryCard(category: .anime)
+        .padding(20)
+}
+```
+
 ## Testing (Ready)
 
 The architecture is designed for easy testing:

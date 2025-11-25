@@ -31,9 +31,10 @@ struct CategoryCard: View {
     }
 }
 
-
-#Preview {
+// renders the view using only the minimum size needed to fit its content
+#Preview(traits: .sizeThatFitsLayout) {
     CategoryCard(category: .anime)
+        .padding(20)
 }
 
 // MARK: - Tappable scaling
