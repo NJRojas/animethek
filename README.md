@@ -6,7 +6,7 @@
 ### A SwiftUI App for Exploring Anime & Manga Data (Jikan API)
 
 AnimeThek is a modern **SwiftUI** application that demonstrates clean architecture, modular networking, structured async/await flows, reusable UI components, and scalable view models.  
-It fetches data from the **Jikan API** and displays anime information in a clean, responsive interface.
+It fetches data from the **[Jikan API](https://jikan.moe/** and displays anime information in a clean, responsive interface.
 
 This project is designed as a **sample code showcase** for iOS practices.  
 It focuses on clarity, maintainability, testing readiness, and SwiftUI-first design.
