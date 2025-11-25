@@ -1,3 +1,7 @@
+![Swift](https://img.shields.io/badge/Swift-5.9-orange?logo=swift&logoColor=white)
+![Platform](https://img.shields.io/badge/iOS-17+-lightgrey?logo=apple)
+![License](https://img.shields.io/badge/License-MIT-blue)
+
 # 🎬 AnimeThek  
 ### A SwiftUI App for Exploring Anime & Manga Data (Jikan API)
 
