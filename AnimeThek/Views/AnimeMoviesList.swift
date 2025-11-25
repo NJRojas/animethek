@@ -48,5 +48,7 @@ struct AnimeMoviesList: View {
 }
 
 #Preview {
-    AnimeMoviesList()
+    NavigationStack {
+        AnimeMoviesList()
+    }
 }

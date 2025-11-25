@@ -11,6 +11,17 @@ It fetches data from the **[Jikan API](https://jikan.moe/)** and displays anime 
 This project is designed as a **sample code showcase** for iOS practices.  
 It focuses on clarity, maintainability, testing readiness, and SwiftUI-first design.
 
+## Why This Project Matters
+
+AnimeThek showcases modern iOS engineering practices using SwiftUI, async/await, MVVM, and a modular architecture.  
+It demonstrates how to build scalable apps with clean state management, testable layers, and reusable UI components.
+
+## Screenshots
+<p float="left">
+  <img src="Screenshots/home_light.png" width="260"/>
+  <img src="Screenshots/home_dark.png" width="260"/>
+</p>
+
 ## Features
 
 - 📱 Built with **SwiftUI** end-to-end  
@@ -65,14 +76,14 @@ AnimeThek includes a lightweight reusable networking abstraction:
 - `AnimeService` exposes high-level domain functions  
 - Swift's `Decodable` is used for safe JSON parsing  
 
-
-🧠 State Management (MVVM)
+### State Management (MVVM)
 
 Each screen has:
-a ViewModel responsible for logic, networking, transforms
-a SwiftUI View focused on rendering
-async/await tasks triggered safely from the UI
-observable state via @Published
+- a ViewModel responsible for logic, networking, transforms
+- a SwiftUI View focused on rendering
+- async/await tasks triggered safely from the UI
+- observable state via @Published
+
 Example (simplified):
 
 ```swift
