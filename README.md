@@ -43,6 +43,7 @@ AnimeThek follows a **clean, layered MVVM architecture**:
 
 ![App Diagram](./Diagrams/AppDiagram.png)
 
+```sh
 AnimeThek/
 ├── Models/
 ├── Networking/
@@ -58,6 +59,7 @@ AnimeThek/
 │ └── Components/
 ├── Utils/
 └── Resources/
+```
 
 ### Architectural principles:
 
@@ -66,6 +68,17 @@ AnimeThek/
 - **Async/await** for clean readability
 - **One-way data flow** with `@StateObject` and `@Published`
 - **Preview-driven development**
+
+---
+
+## 🛠 Tech Stack
+
+- Swift 5.9+
+- SwiftUI
+- MVVM
+- async/await
+- SPM
+- Jikan API
 
 ---
 
@@ -121,12 +134,14 @@ class AnimeSearchViewModel: ObservableObject {
 
 AnimeThek includes reusable components such as:
 
-- AnimeCard
+- CardCategory
 - AsyncImage loader wrapper
 - SearchBar
 - ErrorStateView
 - Loading indicator
 - Designed for scalability and reusability across screens.
+
+<br>
 
 ## 🧩 SwiftUI Component Preview
 
@@ -140,6 +155,12 @@ Here is an example preview for one of the reusable components:
         .padding(20)
 }
 ```
+
+### Preview
+
+<p float="left">
+  <img src="Screenshots/CardCategory_Preview.png" width="260" />
+</p>
 
 ## Testing (Ready)
 
@@ -158,6 +179,10 @@ final class MockAnimeService: AnimeServiceProtocol {
     }
 }
 ```
+
+## License
+
+This project is licensed under the MIT License.
 
 ## 🛠 Requirements
 
